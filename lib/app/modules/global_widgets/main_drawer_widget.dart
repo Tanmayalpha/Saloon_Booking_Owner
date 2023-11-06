@@ -279,7 +279,9 @@ class MainDrawerWidget extends StatelessWidget {
                                                             backgroundColor: MaterialStateProperty.all(Colors.green),
                                                             //padding:MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 10,vertical: 1)),
                                                           ),
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            Get.find<RootController>().razorPayment(context);
+                                                          },
                                                           child: Text(
                                                             "Subscribe",
                                                             style: Theme.of(context)
