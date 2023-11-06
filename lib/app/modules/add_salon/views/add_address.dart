@@ -368,7 +368,6 @@ class AddAddressView extends GetView<AddSalonController> {
                         isFirst: true,
                         isLast: false,
                       ):SizedBox(),),
-
                       TextFieldWidget(
                         labelText: "Zip Code*".tr,
                         hintText: "Zip Code".tr,
@@ -406,7 +405,9 @@ class AddAddressView extends GetView<AddSalonController> {
                   child: BlockButtonWidget(
                     onPressed: () async {
                       if (controller.salon.value.address != null) {
-                        GetLocation location = new GetLocation((value) {});
+                        controller
+                            .createAddress(controller.salon.value.address);
+                        /*GetLocation location = new GetLocation((value) {});
                         try {
                           var value = await location.getLatLng(
                               controller.salon.value.address.address);
@@ -431,7 +432,7 @@ class AddAddressView extends GetView<AddSalonController> {
                           debugPrint("done" + e.toString());
                           controller
                               .createAddress(controller.salon.value.address);
-                        }
+                        }*/
                       }else{
                         Get.showSnackbar(Ui.ErrorSnackBar(message: "Something went wrong"));
                       }

@@ -549,7 +549,7 @@ class InsightView extends GetView<InsightController> {
                               readOnly: true,
                               controller: controller.toCon,
                               onTap: ()async{
-                                DateTime val = await controller.selectDate(context,initialDate: controller.toCon.text!=""?DateTime.parse(controller.toCon.text):null,endDate: DateTime.now());
+                                DateTime val = await controller.selectDate(context,initialDate: controller.toCon.text!=""?DateTime.parse(controller.toCon.text):null,endDate: DateTime.now().add(Duration(days: 1)));
                                 if(val!=null){
                                   controller.toCon.text = DateFormat("yyyy-MM-dd").format(val);
                                   controller.getInsight();

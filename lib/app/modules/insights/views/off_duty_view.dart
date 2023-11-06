@@ -156,7 +156,7 @@ class OffDutyView extends GetView<InsightController> {
                     child: TextField(
                       onTap: ()async{
                         print(controller.fromDate.text);
-                        DateTime val = await controller.selectDate(context,startDate: controller.fromDate.text!=""?DateTime.parse(controller.fromDate.text):DateTime.now());
+                        DateTime val = await controller.selectDate(context,startDate: controller.fromDate.text!=""?DateTime.parse(controller.fromDate.text):DateTime.now(),initialDate: controller.fromDate.text!=""?DateTime.parse(controller.fromDate.text):DateTime.now());
                         if(val!=null){
                           controller.toDate.text = DateFormat("yyyy-MM-dd").format(val);
                         }
