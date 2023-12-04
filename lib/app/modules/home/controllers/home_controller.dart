@@ -215,6 +215,9 @@ class HomeController extends GetxController {
     }
     debugPrint(statusId);
     _bookings = await _bookingsRepository.all(statusId, page: page.value,seat: seatId.value,date: selectedDate.value);
+
+    _bookings.sort((a,b) => a.bookingAt.compareTo(b.bookingAt));
+
       bookings.clear();
     if (_bookings.isNotEmpty) {
       bookings.addAll(_bookings);

@@ -6,6 +6,7 @@
  */
 
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:beauty_salons_owner/app/models/offer_model.dart';
@@ -1593,11 +1594,18 @@ class LaravelApiClient extends GetxService with ApiClient {
     Uri _uri =
         getApiBaseUri("bookings").replace(queryParameters: _queryParameters);
 
+
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
+
+    log('${response.data['data']}');
+
     if (response.data['success'] == true) {
+
       return response.data['data']
           .map<Booking>((obj) => Booking.fromJson(obj))
           .toList();
+
+
     } else {
       throw new Exception(response.data['message']);
     }

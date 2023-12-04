@@ -224,7 +224,7 @@ class BookingView extends GetView<BookingController> {
                                       child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            DateFormat('d, MMMM y  HH:mm', Get.locale.toString()).format(controller.booking.value.bookingAt),
+                                            DateFormat('d, MMMM y  hh:mm a', Get.locale.toString()).format(controller.booking.value.bookingAt),
                                             style: Get.textTheme.caption,
                                             textAlign: TextAlign.end,
                                           )),
@@ -235,7 +235,7 @@ class BookingView extends GetView<BookingController> {
                                       child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            DateFormat('d, MMMM y  HH:mm', Get.locale.toString()).format(controller.booking.value.startAt),
+                                            DateFormat('d, MMMM y  hh:mm a', Get.locale.toString()).format(controller.booking.value.startAt),
                                             style: Get.textTheme.caption,
                                             textAlign: TextAlign.end,
                                           )),
@@ -246,7 +246,7 @@ class BookingView extends GetView<BookingController> {
                                     child: Align(
                                         alignment: Alignment.centerRight,
                                         child: Text(
-                                          DateFormat('d, MMMM y  HH:mm', Get.locale.toString()).format(controller.booking.value.endsAt),
+                                          DateFormat('d, MMMM y  hh:mm a', Get.locale.toString()).format(controller.booking.value.endsAt),
                                           style: Get.textTheme.caption,
                                           textAlign: TextAlign.end,
                                         )),
@@ -331,7 +331,7 @@ class BookingView extends GetView<BookingController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(DateFormat('HH:mm', Get.locale.toString()).format(_booking.value.bookingAt),
+                    Text(DateFormat('hh:mm a', Get.locale.toString()).format(_booking.value.bookingAt),
                         maxLines: 1,
                         style: Get.textTheme.bodyText2.merge(
                           TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4),

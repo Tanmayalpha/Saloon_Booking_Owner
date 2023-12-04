@@ -178,7 +178,32 @@ class OffDutyView extends GetView<InsightController> {
                       MaterialButton(
                         elevation: 0,
                         onPressed: (){
-                          controller.updateDuty1(false);
+                          showDialog(context: Get.context, builder: (BuildContext ctx){
+                            return AlertDialog(
+                              title: Text(
+                                "Off Duty".tr,
+                                style: Get.textTheme.headline3,
+                              ),
+                              content: Text(
+                                  "Do you want to delete?"
+                              ),
+                              actions: [
+                                TextButton(onPressed: (){
+                                  Get.back();
+                                }, child:Text(
+                                  "No".tr,
+                                  style: Get.textTheme.bodyText2,
+                                ), ),
+                                TextButton(onPressed: (){
+                                  Get.back();
+                                  controller.updateDuty1(false);
+                                }, child:Text(
+                                  "Yes".tr,
+                                  style: Get.textTheme.bodyText2,
+                                ), ),
+                              ],
+                            );
+                          });
 
                         },
                         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 12),
@@ -214,4 +239,6 @@ class OffDutyView extends GetView<InsightController> {
       ),
     );
   }
+
+
 }

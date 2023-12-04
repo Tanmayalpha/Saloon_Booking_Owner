@@ -154,7 +154,7 @@ class BookingsListItemWidget extends StatelessWidget {
                       width: 80,
                       child: Column(
                         children: [
-                          Text(DateFormat('HH:mm', Get.locale.toString()).format(_booking.bookingAt),
+                          Text(DateFormat('hh:mm a', Get.locale.toString()).format(_booking.bookingAt),
                               maxLines: 1,
                               style: Get.textTheme.bodyText2.merge(
                                 TextStyle(color: Get.theme.primaryColor, height: 1.4),
