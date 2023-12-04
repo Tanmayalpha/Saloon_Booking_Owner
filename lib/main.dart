@@ -5,6 +5,8 @@
  * Copyright (c) 2022
  */
 
+import 'package:beauty_salons_owner/common/ui.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 void initServices() async {
   Get.log('starting services ...');
+  var connectivityResult = await (Connectivity().checkConnectivity());
   await GetStorage.init();
   await Get.putAsync(() => GlobalService().init());
   await Firebase.initializeApp();
@@ -36,6 +39,13 @@ void initServices() async {
   await Get.putAsync(() => SettingsService().init());
   await Get.putAsync(() => TranslationService().init());
   Get.log('All services started...');
+  if (connectivityResult == ConnectivityResult.mobile||connectivityResult == ConnectivityResult.wifi) {
+
+  } else{
+    //Get.showSnackbar(Ui.ErrorSnackBar(message: "No Internet Connection"));
+  }
+
+
 }
 
 void main() async {

@@ -38,16 +38,7 @@ class OfferView extends GetView<InsightController> {
           },
         ),
         actions: [
-          Obx(() {
-            return controller.selectedOffer.value?Switch(
-              value: controller.onOffOffer.value,
-              activeColor: Get.theme.primaryColor,
-              onChanged: (bool val) {
-                controller.onOffOffer.value = val;
-                controller.getOnOff();
-              },
-            ):SizedBox();
-          })
+
         ],
       ),
       floatingActionButton: Obx(() {
@@ -62,6 +53,7 @@ class OfferView extends GetView<InsightController> {
             controller.startAt.value = "";
             controller.endAt.value = "";
             controller.selectedDay.value = "";
+
           //  controller.discountCon.text = controller.discount.value ?? '';
           },
           backgroundColor: Get.theme.colorScheme.secondary,
@@ -212,7 +204,7 @@ class OfferView extends GetView<InsightController> {
                             TextFieldWidget(
                               labelText: "Discount".tr,
                               hintText: "1-100".tr,
-                              initialValue: controller.discount.value,
+                              initialValue: !controller.selectedOffer.value&&!controller.fromEdit?"":controller.discount.value,
                               keyboardType: TextInputType.number,
                               errorText: '',
                               maxLength: 3,
@@ -382,7 +374,9 @@ class OfferView extends GetView<InsightController> {
                                   elevation: 0,
                                   onPressed: () {
                                     if((!controller.selectedOffer.value&&controller.discountCon.text!=""&&controller.endAt.value!=""&&controller.startAt.value!="")||(controller.selectedOffer.value&&controller.discountCon.text!="")){
-                                      if(!controller.selectedOffer.value&&double.parse(controller.discountCon.text)<=double.parse(controller.discount.value)){
+                                      print(controller.discountCon.text);
+                                      print(controller.discount.value);
+                                      if(!controller.fromEdit&&!controller.selectedOffer.value&&double.parse(controller.discountCon.text)<=double.parse(controller.discount.value)){
                                         Get.showSnackbar(Ui.ErrorSnackBar(message: "Idle offer must be grater than flat offer"));
                                         return;
                                       }
@@ -422,7 +416,7 @@ class OfferView extends GetView<InsightController> {
                                   },
                                   child: Container(
                                     alignment: Alignment.center,
-                                    padding: EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.symmetric(horizontal:10.0),
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
@@ -431,12 +425,30 @@ class OfferView extends GetView<InsightController> {
                                         color: !controller.selectedOffer.value
                                             ? Get.theme.primaryColor
                                             : Get.theme.colorScheme.secondary),
-                                    child: Text(
-                                      "Flat Offers".tr,
-                                      style: Get.textTheme.headline6.copyWith(
-                                          color: !controller.selectedOffer.value
-                                              ? Get.theme.colorScheme.secondary
-                                              : Get.theme.primaryColor),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Flat Offers".tr,
+                                          style: Get.textTheme.headline6.copyWith(
+                                              color: !controller.selectedOffer.value
+                                                  ? Get.theme.colorScheme.secondary
+                                                  : Get.theme.primaryColor),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        //controller.selectedOffer.value?
+                                        Obx(() {
+                                          return Switch(
+                                            value: controller.onOffOffer.value,
+                                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                            activeColor: Colors.black,
+                                            onChanged: (bool val) {
+                                              controller.onOffOffer.value = val;
+                                              controller.getOnOff();
+                                            },
+                                          );
+                                        }),
+                                      ],
                                     ),
                                   ),
                                 ),

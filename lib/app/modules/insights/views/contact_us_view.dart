@@ -54,26 +54,31 @@ class ContactUsView extends GetView<ContactController> {
                                     children: [
                                       Text(
                                         "Corporate Office",
-                                        style: Get.textTheme.headline3
+                                        style: Get.textTheme.subtitle2
                                             .copyWith(color: Get.theme.primaryColor),
                                       ),
                                       SizedBox(
-                                        height: 5.0,
+                                        height: 8.0,
                                       ),
                                       Row(
                                         children: [
                                           Icon(
-                                              Icons.handshake_rounded,
+                                            Icons.handshake_rounded,
                                             color: Get.theme.primaryColor,
-                                            size: 32.0,
+                                            size: 24.0,
                                           ),
                                           SizedBox(width: 10.0,),
-                                          Container(
-                                            color: Get.theme.primaryColor.withOpacity(0.1),
-                                            padding: EdgeInsets.all(10.0),
-                                            child: Text(
-                                              "${controller.contactData['corporate_office']}".tr,
-                                              style: Get.textTheme.headline4.copyWith(color: Get.theme.primaryColor),
+                                          Expanded(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black.withOpacity(0.3),
+                                                  borderRadius: BorderRadius.circular(8.0)
+                                              ),
+                                              padding: EdgeInsets.all(10.0),
+                                              child: Text(
+                                                "${controller.contactData['corporate_office']}".tr,
+                                                style: Get.textTheme.subtitle1.copyWith(color: Get.theme.primaryColor),
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -98,35 +103,44 @@ class ContactUsView extends GetView<ContactController> {
                                     children: [
                                       Text(
                                         "Trimzzy For Business",
-                                        style: Get.textTheme.headline3
+                                        style: Get.textTheme.subtitle2
                                             .copyWith(color: Get.theme.primaryColor),
                                       ),
                                       SizedBox(
-                                        height: 5.0,
+                                        height: 8.0,
                                       ),
                                       Row(
                                         children: [
                                           Icon(
                                             Icons.contact_mail,
                                             color: Get.theme.primaryColor,
-                                            size: 32.0,
+                                            size: 24.0,
                                           ),
                                           SizedBox(width: 10.0,),
-                                          Container(
-                                            color: Get.theme.primaryColor.withOpacity(0.1),
-                                            padding: EdgeInsets.all(10.0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Email:${controller.contactData['bussiness_details']['email']}".tr,
-                                                  style: Get.textTheme.headline4.copyWith(color: Get.theme.primaryColor),
-                                                ),
-                                                Text(
-                                                  "Phone:${controller.contactData['bussiness_details']['phone']}".tr,
-                                                  style: Get.textTheme.headline4.copyWith(color: Get.theme.primaryColor),
-                                                ),
-                                              ],
+                                          Expanded(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black.withOpacity(0.3),
+                                                  borderRadius: BorderRadius.circular(8.0)
+                                              ),
+
+                                              padding: EdgeInsets.all(10.0),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Email : ${controller.contactData['bussiness_details']['email']}".tr,
+                                                    style: Get.textTheme.subtitle1.copyWith(color: Get.theme.primaryColor),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5.0,
+                                                  ),
+                                                  Text(
+                                                    "Phone : ${controller.contactData['bussiness_details']['phone']}".tr,
+                                                    style: Get.textTheme.subtitle1.copyWith(color: Get.theme.primaryColor),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -151,35 +165,43 @@ class ContactUsView extends GetView<ContactController> {
                                     children: [
                                       Text(
                                         "Work With US",
-                                        style: Get.textTheme.headline3
+                                        style: Get.textTheme.subtitle2
                                             .copyWith(color: Get.theme.primaryColor),
                                       ),
                                       SizedBox(
-                                        height: 5.0,
+                                        height: 8.0,
                                       ),
                                       Row(
                                         children: [
                                           Icon(
                                             Icons.headphones,
                                             color: Get.theme.primaryColor,
-                                            size: 32.0,
+                                            size: 24.0,
                                           ),
                                           SizedBox(width: 10.0,),
-                                          Container(
-                                            color: Get.theme.primaryColor.withOpacity(0.1),
-                                            padding: EdgeInsets.all(10.0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Email:${controller.contactData['work_with_ud']['email']}".tr,
-                                                  style: Get.textTheme.headline4.copyWith(color: Get.theme.primaryColor),
-                                                ),
-                                                Text(
-                                                  "Phone:${controller.contactData['work_with_ud']['phone']}".tr,
-                                                  style: Get.textTheme.headline4.copyWith(color: Get.theme.primaryColor),
-                                                ),
-                                              ],
+                                          Expanded(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black.withOpacity(0.3),
+                                                  borderRadius: BorderRadius.circular(8.0)
+                                              ),
+                                              padding: EdgeInsets.all(10.0),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Email : ${controller.contactData['work_with_ud']['email']}".tr,
+                                                    style: Get.textTheme.subtitle1.copyWith(color: Get.theme.primaryColor),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5.0,
+                                                  ),
+                                                  Text(
+                                                    "Phone : ${controller.contactData['work_with_ud']['phone']}".tr,
+                                                    style: Get.textTheme.subtitle1.copyWith(color: Get.theme.primaryColor),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ],

@@ -2,6 +2,8 @@
  * Copyright (c) 2020 .
  */
 
+import 'dart:async';
+
 import 'package:beauty_salons_owner/app/models/salon_model.dart';
 import 'package:beauty_salons_owner/app/modules/salons/controllers/salons_controller.dart';
 import 'package:beauty_salons_owner/app/providers/laravel_provider.dart';
@@ -9,6 +11,7 @@ import 'package:beauty_salons_owner/app/repositories/salon_repository.dart';
 import 'package:beauty_salons_owner/app/services/settings_service.dart';
 import 'package:beauty_salons_owner/common/Razorpay.dart';
 import 'package:beauty_salons_owner/common/ui.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -31,6 +34,7 @@ class RootController extends GetxController {
   NotificationRepository _notificationRepository;
   CustomPageRepository _customPageRepository;
   SalonRepository _salonRepository;
+  StreamSubscription<ConnectivityResult> _connectivitySubscription;
   final salons = <Salon>[].obs;
   RootController() {
     _salonRepository = new SalonRepository();
@@ -74,6 +78,8 @@ class RootController extends GetxController {
   @override
   void onInit() async {
     await getCustomPages();
+    _connectivitySubscription =
+        Connectivity().onConnectivityChanged.listen(_updateConnectionStatus);
     getSalons();
     if (Get.arguments != null && Get.arguments is int) {
       changePageInRoot(Get.arguments as int);
@@ -82,6 +88,24 @@ class RootController extends GetxController {
       await Get.find<HomeController>().refreshHome();
     }
     super.onInit();
+  }
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    if(result.name=="none"){
+      Get.showSnackbar(
+          Ui.ErrorSnackBar(message: "No Internet Connection".toString()));
+    }else{
+      if(Get.isRegistered<HomeController>()){
+        await getCustomPages();
+        getSalons();
+        await Get.find<HomeController>().refreshHome();
+      }
+    }
+    print(result.name);
+  }
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
   }
   Future getSalons() async {
     try {

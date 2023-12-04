@@ -43,9 +43,12 @@ class MainDrawerWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Welcome".tr, style: Get.textTheme.headline5.merge(TextStyle(color: Get.theme.colorScheme.secondary))),
+                      Text("Welcome".tr,
+                          style: Get.textTheme.headline5.merge(TextStyle(
+                              color: Get.theme.colorScheme.secondary))),
                       SizedBox(height: 5),
-                      Text("Login account or create new one for free".tr, style: Get.textTheme.bodyText1),
+                      Text("Login account or create new one for free".tr,
+                          style: Get.textTheme.bodyText1),
                       SizedBox(height: 15),
                       Wrap(
                         spacing: 10,
@@ -62,10 +65,12 @@ class MainDrawerWidget extends StatelessWidget {
                               crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 9,
                               children: [
-                                Icon(Icons.exit_to_app_outlined, color: Get.theme.primaryColor, size: 24),
+                                Icon(Icons.exit_to_app_outlined,
+                                    color: Get.theme.primaryColor, size: 24),
                                 Text(
                                   "Login".tr,
-                                  style: Get.textTheme.subtitle1.merge(TextStyle(color: Get.theme.primaryColor)),
+                                  style: Get.textTheme.subtitle1.merge(
+                                      TextStyle(color: Get.theme.primaryColor)),
                                 ),
                               ],
                             ),
@@ -83,10 +88,12 @@ class MainDrawerWidget extends StatelessWidget {
                               crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 9,
                               children: [
-                                Icon(Icons.person_add_outlined, color: Get.theme.hintColor, size: 24),
+                                Icon(Icons.person_add_outlined,
+                                    color: Get.theme.hintColor, size: 24),
                                 Text(
                                   "Register".tr,
-                                  style: Get.textTheme.subtitle1.merge(TextStyle(color: Get.theme.hintColor)),
+                                  style: Get.textTheme.subtitle1.merge(
+                                      TextStyle(color: Get.theme.hintColor)),
                                 ),
                               ],
                             ),
@@ -124,16 +131,18 @@ class MainDrawerWidget extends StatelessWidget {
                         children: [
                           Text(
                             Get.find<AuthService>().user.value.email,
-                            style: Theme.of(context).textTheme.caption.copyWith(
-                              fontSize: 16
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .caption
+                                .copyWith(fontSize: 16),
                           ),
                         ],
                       ),
                       otherAccountsPictures: [
                         SizedBox(),
                       ],
-                      currentAccountPictureSize: Size(MediaQuery.of(context).size.width*.7,80),
+                      currentAccountPictureSize:
+                          Size(MediaQuery.of(context).size.width * .7, 80),
                       currentAccountPicture: Column(
                         children: [
                           SizedBox(
@@ -142,26 +151,39 @@ class MainDrawerWidget extends StatelessWidget {
                             child: Stack(
                               children: [
                                 ClipRRect(
-                                  borderRadius: BorderRadius.all(Radius.circular(80)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(80)),
                                   child: CachedNetworkImage(
                                     height: 80,
                                     width: double.infinity,
                                     fit: BoxFit.cover,
-                                    imageUrl: Get.find<AuthService>().user.value.avatar.thumb,
+                                    imageUrl: Get.find<AuthService>()
+                                        .user
+                                        .value
+                                        .avatar
+                                        .thumb,
                                     placeholder: (context, url) => Image.asset(
                                       'assets/img/loading.gif',
                                       fit: BoxFit.cover,
                                       width: double.infinity,
                                       height: 80,
                                     ),
-                                    errorWidget: (context, url, error) => Icon(Icons.person,size: 32,),
+                                    errorWidget: (context, url, error) => Icon(
+                                      Icons.person,
+                                      size: 32,
+                                    ),
                                   ),
                                 ),
                                 Positioned(
                                   top: 0,
                                   right: 0,
-                                  child: Get.find<AuthService>().user.value.verifiedPhone ?? false
-                                      ? Icon(Icons.check_circle, color: Colors.green, size: 24)
+                                  child: Get.find<AuthService>()
+                                              .user
+                                              .value
+                                              .verifiedPhone ??
+                                          false
+                                      ? Icon(Icons.check_circle,
+                                          color: Colors.green, size: 24)
                                       : SizedBox(),
                                 )
                               ],
@@ -170,138 +192,187 @@ class MainDrawerWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                Obx(() =>Get.isRegistered<RootController>()&&!Get.find<RootController>().loading.value&&Get.find<RootController>().salons.length>0?
-                Column(
-                      children: [
-
-                    Obx(() => Get.find<RootController>().salons.first.subscription?Container(
-
-                        //  height: 40,
-                          color: Get.theme.colorScheme.primary,
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex:2,
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    "Subscribed",
-                                    style: Theme.of(context).textTheme.bodyText2.copyWith(
-                                      color: Colors.white
-                                    ),
-                                  ),
+                    Obx(
+                      () => Get.isRegistered<RootController>() &&
+                              !Get.find<RootController>().loading.value &&
+                              Get.find<RootController>().salons.length > 0
+                          ? Column(
+                              children: [
+                                Obx(
+                                  () => Get.find<RootController>()
+                                          .salons
+                                          .first
+                                          .subscription
+                                      ? Container(
+                                          //  height: 40,
+                                          color: Get.theme.colorScheme.primary,
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 2,
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(10.0),
+                                                  child: Text(
+                                                    "Subscribed",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.white),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 3,
+                                                child: Container(
+                                                  color: Get.theme.colorScheme
+                                                      .primary,
+                                                  padding: EdgeInsets.all(10.0),
+                                                  //   height: 40,
+                                                  width: double.infinity,
+                                                  child: Text(
+                                                    "Valid Till - ${Get.find<RootController>().salons.first.subscriptionEndDate}",
+                                                    textAlign: TextAlign.end,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.white),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Container(
+                                          //  height: 40,
+                                    color: Theme.of(context).hintColor.withOpacity(0.1),
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(10.0),
+                                                  child: Text(
+                                                    "Subscribe to go online",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline4
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.black,fontSize: 14.0),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(bottom: 4,right:8.0),
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 25,
+                                                      child: ElevatedButton(
+                                                          style: ButtonStyle(
+                                                            elevation: MaterialStateProperty.all(1),
+                                                            backgroundColor: MaterialStateProperty.all(Colors.green),
+                                                            //padding:MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 10,vertical: 1)),
+                                                          ),
+                                                          onPressed: () {
+                                                            Get.find<RootController>().razorPayment(context);
+                                                          },
+                                                          child: Text(
+                                                            "Subscribe",
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .subtitle1
+                                                                .copyWith(
+                                                                    color:
+                                                                        Colors.white,fontSize: 10.0),
+                                                          )),
+                                                    ),
+                                                    const SizedBox(height: 5,),
+                                                    Text(
+                                                      "₹${Get.find<SettingsService>().setting.value.subscriptionAmount}/${Get.find<SettingsService>().setting.value.subscriptionType}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .subtitle1
+                                                          .copyWith(
+                                                          color:
+                                                          Colors.black,fontSize: 10.0),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                 ),
-                              ),
-                              Expanded(
-                                flex:3,
-                                child: Container(
-                                  color: Get.theme.colorScheme.primary,
-                                  padding: EdgeInsets.all(10.0),
-                               //   height: 40,
-                                  width: double.infinity,
-                                  child: Text(
-                                    "Valid Till - ${Get.find<RootController>().salons.first.subscriptionEndDate}",
-                                    textAlign: TextAlign.end,
-                                    style: Theme.of(context).textTheme.bodyText1.copyWith(
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ):
-                        Container(
-                          //  height: 40,
-                          color: Get.theme.colorScheme.primary,
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    "Subscribe to go online",
-                                    style: Theme.of(context).textTheme.bodyText2.copyWith(
-                                        color: Colors.black
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: (){
-
-                                  Get.find<RootController>().razorPayment(context);
-                                },
-                                child: Container(
-                                  color: Colors.green,
-                                  padding: EdgeInsets.all(10.0),
-                                  width: 100,
-                                  //   height: 40,
-                                  child: Text(
-                                    "Subscribe",
-                                    style: Theme.of(context).textTheme.bodyText2.copyWith(
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),),
-                        Divider(
-                          color: Colors.white,
-                          height: 1,
-                        ),
-                        Container(
-                          color: Get.theme.colorScheme.primary,
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    "Partner ID - ${Get.find<RootController>().salons.first.code}",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.bodyText1.copyWith(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                               !Get.find<RootController>().salons.first.subscription?InkWell(
-                                onTap: (){
-
-                                  Get.find<RootController>().razorPayment(context);
-                                },
-                                child: Container(
-                                  width: 100,
+                                Divider(
                                   color: Colors.white,
-                                  padding: EdgeInsets.all(10.0),
-                                  //   height: 40,
-                                  child: Text(
-                                    "₹${Get.find<SettingsService>().setting.value.subscriptionAmount}/${Get.find<SettingsService>().setting.value.subscriptionType}",
-                                    style: Theme.of(context).textTheme.bodyText2.copyWith(
-                                        color: Colors.black
-                                    ),
+                                  height: 1,
+                                ),
+                                Container(
+                                  color: Get.theme.colorScheme.primary,
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.all(10.0),
+                                          child: Text(
+                                            "Partner ID - ${Get.find<RootController>().salons.first.code}",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.white,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ):SizedBox(),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          color: Get.isRegistered<RootController>()&&(!Get.find<RootController>().salons.first.accepted||Get.find<RootController>().salons.first.closed)?Colors.red:Colors.green,
-                          alignment: Alignment.center,
-                          child: Text(
-                            Get.isRegistered<RootController>()&&!Get.find<RootController>().salons.first.accepted?"Wait for Approval":Get.find<RootController>().salons.first.closed?Get.find<RootController>().salons.first.closedMessage:"Open",
-                            style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
-                          ),
-                        ),
-                      /*  SwitchListTile(
+                                Container(
+                                  padding: EdgeInsets.all(10.0),
+                                  color: Get.isRegistered<RootController>() &&
+                                          (!Get.find<RootController>()
+                                                  .salons
+                                                  .first
+                                                  .accepted ||
+                                              Get.find<RootController>()
+                                                  .salons
+                                                  .first
+                                                  .closed)
+                                      ? Colors.red
+                                      : Colors.green,
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    Get.isRegistered<RootController>() &&
+                                            !Get.find<RootController>()
+                                                .salons
+                                                .first
+                                                .accepted
+                                        ? "Wait for Approval"
+                                        : Get.find<RootController>()
+                                                .salons
+                                                .first
+                                                .closed
+                                            ? Get.find<RootController>()
+                                                .salons
+                                                .first
+                                                .closedMessage
+                                            : "Open",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                ),
+                                /*  SwitchListTile(
                           title: Text(
                             "Closed",
                             style: Theme.of(context).textTheme.headline2.copyWith(
@@ -361,8 +432,10 @@ class MainDrawerWidget extends StatelessWidget {
 
 
                           },),*/
-                      ],
-                    ):SizedBox(),),
+                              ],
+                            )
+                          : SizedBox(),
+                    ),
                   ],
                 ),
               );
@@ -371,7 +444,10 @@ class MainDrawerWidget extends StatelessWidget {
           SizedBox(height: 20),
           DrawerLinkWidget(
             icon: Icons.build_circle_outlined,
-            text: Get.isRegistered<RootController>()&&Get.find<RootController>().salons.isNotEmpty?"My ${Get.find<RootController>().salons.first.salonCategory.title}":"My Salons",
+            text: Get.isRegistered<RootController>() &&
+                    Get.find<RootController>().salons.isNotEmpty
+                ? "My ${Get.find<RootController>().salons.first.salonCategory.title}"
+                : "My Salons",
             onTap: (e) {
               Get.offAndToNamed(Routes.SALONS);
             },
@@ -389,32 +465,32 @@ class MainDrawerWidget extends StatelessWidget {
             icon: Icons.folder_special_outlined,
             text: "My Services",
             onTap: (e) {
-              if(Get.find<RootController>().salons.isEmpty){
+              if (Get.find<RootController>().salons.isEmpty) {
                 Get.showSnackbar(Ui.ErrorSnackBar(message: "Please Add Salon"));
               }
               Get.offAndToNamed(Routes.E_SERVICES);
             },
           ),
 
-         // Get.find<AuthService>().user.value.isSalonOwner?
+          // Get.find<AuthService>().user.value.isSalonOwner?
           DrawerLinkWidget(
             icon: Icons.build_circle_outlined,
             text: "Manage Seats",
             onTap: (e) {
-              if(Get.find<RootController>().salons.isEmpty){
+              if (Get.find<RootController>().salons.isEmpty) {
                 Get.showSnackbar(Ui.ErrorSnackBar(message: "Please Add Salon"));
               }
               Get.back();
-            Get.toNamed(Routes.MANAGE_SEAT);
+              Get.toNamed(Routes.MANAGE_SEAT);
             },
           ),
-              //:SizedBox(),
+          //:SizedBox(),
           //Get.find<AuthService>().user.value.isSalonOwner?
           DrawerLinkWidget(
             icon: Icons.local_offer_outlined,
             text: "Offers",
             onTap: (e) {
-              if(Get.find<RootController>().salons.isEmpty){
+              if (Get.find<RootController>().salons.isEmpty) {
                 Get.showSnackbar(Ui.ErrorSnackBar(message: "Please Add Salon"));
               }
               Get.back();
@@ -427,14 +503,14 @@ class MainDrawerWidget extends StatelessWidget {
             icon: Icons.alarm_off,
             text: "Off Duty",
             onTap: (e) {
-              if(Get.find<RootController>().salons.isEmpty){
+              if (Get.find<RootController>().salons.isEmpty) {
                 Get.showSnackbar(Ui.ErrorSnackBar(message: "Please Add Salon"));
               }
               Get.back();
               Get.toNamed(Routes.OFF_DUTY);
             },
           ),
-            //  :SizedBox(),
+          //  :SizedBox(),
           DrawerLinkWidget(
             icon: Icons.notifications_none_outlined,
             text: "Notifications",
@@ -476,7 +552,12 @@ class MainDrawerWidget extends StatelessWidget {
               },
             ),
           if (Get.find<AuthService>().user.value.isSalonOwner)
-            if (Get.find<SettingsService>().setting.value.modules.toString().contains("Subscription"))
+            if (Get.find<SettingsService>()
+                .setting
+                .value
+                .modules
+                .toString()
+                .contains("Subscription"))
               ListTile(
                 dense: true,
                 title: Text(
@@ -489,7 +570,12 @@ class MainDrawerWidget extends StatelessWidget {
                 ),
               ),
           if (Get.find<AuthService>().user.value.isSalonOwner)
-            if (Get.find<SettingsService>().setting.value.modules.toString().contains("Subscription"))
+            if (Get.find<SettingsService>()
+                .setting
+                .value
+                .modules
+                .toString()
+                .contains("Subscription"))
               DrawerLinkWidget(
                 icon: Icons.fact_check_outlined,
                 text: "Subscriptions History",
@@ -498,7 +584,12 @@ class MainDrawerWidget extends StatelessWidget {
                 },
               ),
           if (Get.find<AuthService>().user.value.isSalonOwner)
-            if (Get.find<SettingsService>().setting.value.modules.toString().contains("Subscription"))
+            if (Get.find<SettingsService>()
+                .setting
+                .value
+                .modules
+                .toString()
+                .contains("Subscription"))
               DrawerLinkWidget(
                 icon: Icons.auto_awesome_mosaic_outlined,
                 text: "Subscription Packages",
@@ -507,7 +598,12 @@ class MainDrawerWidget extends StatelessWidget {
                 },
               ),
           if (Get.find<AuthService>().user.value.isSalonOwner)
-            if (Get.find<SettingsService>().setting.value.modules.toString().contains("Subscription"))
+            if (Get.find<SettingsService>()
+                .setting
+                .value
+                .modules
+                .toString()
+                .contains("Subscription"))
               DrawerLinkWidget(
                 icon: Icons.account_balance_wallet_outlined,
                 text: "Wallets",
@@ -588,35 +684,44 @@ class MainDrawerWidget extends StatelessWidget {
               Get.offAndToNamed(Routes.QUERY);
             },
           ),
-          if (Get.find<AuthService>().user.value.isSalonOwner) CustomPageDrawerLinkWidget(),
+          if (Get.find<AuthService>().user.value.isSalonOwner)
+            CustomPageDrawerLinkWidget(),
           Obx(() {
             if (Get.find<AuthService>().isAuth) {
               return DrawerLinkWidget(
                 icon: Icons.logout,
                 text: "Logout",
                 onTap: (e) async {
-                  showDialog(context: context, builder: (ctx){
-                    return AlertDialog(
-                      title: Text("Logout"),
-                      content: Text("do you want to proceed?"),
-                      actions: [
-                        TextButton(onPressed: (){
-                          Get.back();
-                        }, child: Text("No"),),
-                        TextButton(onPressed: ()async{
-                          await Get.find<AuthService>().removeCurrentUser();
-                          await Get.offNamedUntil(Routes.LOGIN, (Route route) {
-                            if (route.settings.name == Routes.LOGIN) {
-                              return true;
-                            }
-                            return false;
-                          });
-                        }, child: Text("Yes"),),
-
-                      ],
-                    );
-                  });
-
+                  showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return AlertDialog(
+                          title: Text("Logout"),
+                          content: Text("do you want to proceed?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: Text("No"),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await Get.find<AuthService>()
+                                    .removeCurrentUser();
+                                await Get.offNamedUntil(Routes.LOGIN,
+                                    (Route route) {
+                                  if (route.settings.name == Routes.LOGIN) {
+                                    return true;
+                                  }
+                                  return false;
+                                });
+                              },
+                              child: Text("Yes"),
+                            ),
+                          ],
+                        );
+                      });
                 },
               );
             } else {
@@ -627,7 +732,9 @@ class MainDrawerWidget extends StatelessWidget {
             ListTile(
               dense: true,
               title: Text(
-                "Version".tr + " " + Get.find<SettingsService>().setting.value.appVersion,
+                "Version".tr +
+                    " " +
+                    Get.find<SettingsService>().setting.value.appVersion,
                 style: Get.textTheme.caption,
               ),
               trailing: Icon(

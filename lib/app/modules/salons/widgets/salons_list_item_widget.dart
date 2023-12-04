@@ -140,7 +140,8 @@ class SalonsListItemWidget extends StatelessWidget {
                 ),
               ):Container(
                 //  height: 40,
-                color: Get.theme.colorScheme.primary,
+                //color: Get.theme.colorScheme.primary,
+                color: Theme.of(context).hintColor.withOpacity(0.1),
                 alignment: Alignment.center,
                 child: Row(
                   children: [
@@ -150,33 +151,55 @@ class SalonsListItemWidget extends StatelessWidget {
                         padding: EdgeInsets.all(10.0),
                         child: Text(
                           "Subscribe to go online",
-                          style: Theme.of(context).textTheme.bodyText2.copyWith(
-                              color: Colors.white
-                          ),
+                          style: Theme.of(context).textTheme.headline4
+                            .copyWith(
+                        color:
+                        Colors.black,fontSize: 14.0),
                         ),
                       ),
                     ),
-                    InkWell(
-                      onTap: (){
-                        Get.find<RootController>().razorPayment(context);
-                      },
-                      child: Container(
-                        width: 100,
-                        color: Colors.green,
-                        padding: EdgeInsets.all(10.0),
-                        //   height: 40,
-                        child: Text(
-                          "Subscribe",
-                          style: Theme.of(context).textTheme.bodyText2.copyWith(
-                              color: Colors.white
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4,bottom: 4,right:8.0),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
+                            child: ElevatedButton(
+                                style: ButtonStyle(
+                                  elevation: MaterialStateProperty.all(1),
+                                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                                  //padding:MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 10,vertical: 1)),
+                                ),
+                                onPressed: () {
+                                  Get.find<RootController>().razorPayment(context);
+                                },
+                                child: Text(
+                                  "Subscribe",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1
+                                      .copyWith(
+                                      color:
+                                      Colors.white,fontSize: 10.0),
+                                )),
                           ),
-                        ),
+                          const SizedBox(height: 5,),
+                          Text(
+                            "₹${Get.find<SettingsService>().setting.value.subscriptionAmount}/${Get.find<SettingsService>().setting.value.subscriptionType}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .subtitle1
+                                .copyWith(
+                                color:
+                                Colors.black,fontSize: 10.0),
+                          )
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-              Container(
+              /*Container(
                 color: Colors.white,
                 alignment: Alignment.centerRight,
                 width: double.infinity,
@@ -202,7 +225,7 @@ class SalonsListItemWidget extends StatelessWidget {
                     ):SizedBox(),
                   ],
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

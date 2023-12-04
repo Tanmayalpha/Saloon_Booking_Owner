@@ -1,31 +1,20 @@
-import 'package:beauty_salons_owner/app/models/address_model.dart';
-import 'package:beauty_salons_owner/app/models/media_model.dart';
-import 'package:beauty_salons_owner/app/models/salon_model.dart';
-import 'package:beauty_salons_owner/app/modules/global_widgets/duration_chip_widget.dart';
 
-import 'package:beauty_salons_owner/app/modules/global_widgets/images_field_widget.dart';
-import 'package:beauty_salons_owner/app/modules/global_widgets/multi_select_dialog.dart';
-import 'package:beauty_salons_owner/app/modules/global_widgets/select_dialog.dart';
-import 'package:beauty_salons_owner/app/services/auth_service.dart';
-import 'package:beauty_salons_owner/common/location_details.dart';
+import 'package:beauty_salons_owner/app/models/salon_model.dart';
+
 import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/helper.dart';
+
 import '../../../../common/ui.dart';
 import '../../../models/category_model.dart';
-import '../../../models/main_model.dart';
+
 import '../../../models/setting_model.dart';
 import '../../../routes/app_routes.dart';
 import '../../../services/settings_service.dart';
 import '../../global_widgets/block_button_widget.dart';
 import '../../global_widgets/circular_loading_widget.dart';
-import '../../global_widgets/phone_field_widget.dart';
-import '../../global_widgets/text_field_widget.dart';
-import '../../root/controllers/root_controller.dart';
-import '../../salons/widgets/horizontal_stepper_widget.dart';
-import '../../salons/widgets/step_widget.dart';
+
 import '../controllers/add_controller.dart';
 
 class AddServiceView extends GetView<AddSalonController> {
@@ -462,8 +451,8 @@ class AddServiceView extends GetView<AddSalonController> {
                                               Container(
                                                 width: 60,
                                                 child: TextFormField(
-                                                  style: TextStyle(
-                                                    fontSize: 14.0,
+                                                  style: Get.textTheme.titleMedium.copyWith(
+                                                      fontSize: 10.0
                                                   ),
                                                   initialValue: model.price,
                                                   keyboardType:
@@ -474,13 +463,13 @@ class AddServiceView extends GetView<AddSalonController> {
                                                   decoration: InputDecoration(
                                                     hintText: "Price",
                                                     labelText: "Price*",
-                                                    labelStyle: TextStyle(
-                                                      fontSize: 10.0,
+                                                    labelStyle: Get.textTheme.titleMedium.copyWith(
+                                                        fontSize: 10.0
                                                     ),
                                                     contentPadding:
                                                     EdgeInsets.all(10.0),
-                                                    hintStyle: TextStyle(
-                                                      fontSize: 10.0,
+                                                    hintStyle:Get.textTheme.titleMedium.copyWith(
+                                                        fontSize: 10.0
                                                     ),
                                                     isDense: true,
                                                     enabledBorder:
@@ -536,7 +525,7 @@ class AddServiceView extends GetView<AddSalonController> {
                                                 child: Container(
                                                   width: 70,
                                                   padding: EdgeInsets.symmetric(
-                                                      vertical: 12.0,
+                                                      vertical: 8.0,
                                                       horizontal: 8.0),
                                                   decoration: BoxDecoration(
                                                       borderRadius:
@@ -553,8 +542,8 @@ class AddServiceView extends GetView<AddSalonController> {
                                                             null
                                                         ? "Duration*"
                                                         : model.duration + "m",
-                                                    style: TextStyle(
-                                                      fontSize: 10.0,
+                                                    style: Get.textTheme.titleMedium.copyWith(
+                                                      fontSize: 10.0
                                                     ),
                                                   ),
                                                 ),
